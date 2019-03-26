@@ -40,6 +40,40 @@ input[type=text]:focus, input[type=password]:focus {
 </style>
 </head>
 <body>
+<% if(request.getAttribute("success")!=null) {%>
+	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+
+    swal ( 'WELCOME ADMIN !!' ,  "Your ID : ${id}..." ,  'success' )
+
+    </script>
+	
+<% }%>
+
+<% if(request.getAttribute("failure")!=null) {%>
+	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+
+    swal ( 'OOPS !!' ,  "Invalid Username or Password..." ,  'error' )
+
+    </script>
+	
+<% }%>
+
+<% if(request.getAttribute("passwordError")!=null) {%>
+	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+
+    swal ( 'OOPS !!' ,  "Password and Confirm Password Doesn't Match..." ,  'error' )
+
+    </script>
+	
+<% }%>
+
+
 
 <!-- Navigation Bar --> 
 	<div >
@@ -50,8 +84,11 @@ input[type=text]:focus, input[type=password]:focus {
 
 
 			<form:form class="form-inline ml-auto" action="loginAdmin" method="POST" modelAttribute="admin"> 
-			    <form:input class="form-control mr-sm-1 mb-2" type="text" placeholder="Username" name="id" path="adminId"/> 
-			    <form:input class="form-control mr-sm-1 mb-2" type="password" placeholder="Password" name="password" path="password"/>
+			
+			    <form:input class="form-control mr-sm-1 mb-2" type="text" placeholder="Username" pattern="ADN+[0-9]{1,}$" title="e.g., ADN1001" name="id" path="adminId" maxlength="13" required="required"/> 
+			    
+			    <form:input class="form-control mr-sm-1 mb-2" type="password" placeholder="Password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" name="password" path="password" maxlength="20" required="required"/>
+			    
 				<form:button class="btn btn-project mr-sm-1 " name="loginAdmin">Login</form:button>
 			</form:form>
 			<a href="register" class="btn btn-project" role="button">Register</a>

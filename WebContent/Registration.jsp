@@ -18,12 +18,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 <style>
-
 body {
   padding-top: 20px;
   padding-bottom: 20px;
 }
-
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
 .marketing,
@@ -31,7 +29,6 @@ body {
   padding-right: 15px;
   padding-left: 15px;
 }
-
 /* Custom page header */
 .header {
   border-bottom: 1px solid #e5e5e5;
@@ -43,14 +40,12 @@ body {
   margin-bottom: 0;
   line-height: 40px;
 }
-
 /* Custom page footer */
 .footer {
   padding-top: 19px;
   color: #777;
   border-top: 1px solid #e5e5e5;
 }
-
 /* Customize container */
 @media (min-width: 768px) {
   .container {
@@ -60,7 +55,6 @@ body {
 .container-narrow > hr {
   margin: 30px 0;
 }
-
 /* Main marketing message and sign up button */
 .jumbotron {
   text-align: center;
@@ -70,7 +64,6 @@ body {
   padding: 14px 24px;
   font-size: 21px;
 }
-
 /* Supporting marketing content */
 .marketing {
   margin: 40px 0;
@@ -78,7 +71,6 @@ body {
 .marketing p + h4 {
   margin-top: 28px;
 }
-
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
   /* Remove the padding we set earlier */
@@ -97,7 +89,6 @@ body {
     border-bottom: 0;
   }
 }
-
 .btn-project{
 	font-family: 'Poppins', sans-serif;
 	background: #7386D5;
@@ -107,12 +98,14 @@ body {
 .btn:hover {
   opacity: 1.5;
 }
-
 </style>
 
 </head>
 <body>
 
+<% java.util.Date date=new java.util.Date();
+   String fDate = new java.text.SimpleDateFormat("dd-MM-yyyy").format(date);
+%>
 
 <!-- Navigation Bar --> 
 	<div >
@@ -135,19 +128,18 @@ body {
 						<div class="row">
 							<div class="col-sm-6 form-group">
 								<label>First Name</label> 
-								<form:input path="firstName" type="text" placeholder="First Name" class="form-control" name="first-name" required="required" />
+								<form:input path="firstName" type="text" placeholder="First Name" class="form-control" name="first-name" maxlength="20" required="required" />
 							</div>
 							<div class="col-sm-6 form-group">
 								<label>Last Name</label> 
-								<form:input path="lastName" type="text"
-									placeholder="Last Name" class="form-control" name="last-name" required="required" />
+								<form:input path="lastName" type="text" placeholder="Last Name" class="form-control" name="last-name" maxlength="20" required="required" />
 							</div>
 						</div>
 					
 						<div class="row">
 							<div class="col-sm-4 form-group">
 								<label>Age</label> 
-								<form:input path="age" type="number" placeholder="Age" class="form-control" min="1" max="130" name="age" required="required" />
+								<form:input path="age" type="number" placeholder="Age" class="form-control" min="1" max="130" name="age" maxlength="3" required="required" />
 							</div>
 							<div class="col-sm-4 form-group">
 								<div class="form-group">
@@ -162,28 +154,25 @@ body {
 							
 							<div class="col-sm-4 form-group">
 								<label>Date of Birth</label> 
-								<form:input path="dateOfBirth" type="date"
-									placeholder="Select"  class="form-control" max="2019-04-02" name="dob" required="required" />
+								<form:input path="dateOfBirth" type="date" placeholder="dd-mm-yyyy"  class="form-control" max="<%= fDate %>" name="dob" required="required" />
 							</div>
 						</div>
 					
 						<div class="form-group">
 							<label>Contact Number</label> 
-							<form:input path="contactNumber" type="number"
-								placeholder="Enter Phone Number Here" class="form-control" name="contact" required="required" />
+							<form:input path="contactNumber" type="number" placeholder="Enter Phone Number Here" class="form-control" name="contact" pattern="[0-9]{10,10}" title="Don't include '0'" maxlength="10" required="required" />
 						</div>
 						<div class="form-group">
-							<label>Alternate Contact Number</label> <form:input path="alternateContactNumber" type="number" placeholder="Enter Phone Number Here" class="form-control" name="altcontact" />
+							<label>Alternate Contact Number</label> <form:input path="alternateContactNumber" type="number" placeholder="Enter Phone Number Here" class="form-control" name="altcontact" pattern="[0-9]{10}" title="Don't include '0'" maxlength="10" />
 						</div>
 						
 						<div class="form-group">
-							<label>Email Address</label> <form:input path="emailId" type="email" placeholder="Enter Email Address Here" class="form-control" name="email" required="required" />
+							<label>Email Address</label> <form:input path="emailId" type="email" placeholder="Enter Email Address Here" class="form-control" name="email" maxlength="30" required="required" />
 						</div>
 						
 						<div class="form-group">
 							<label for="pass">Password</label>
-							 <form:input path="password" type="password"
-								placeholder="Enter New Password" class="form-control" name="pass" required="required" id="password" />
+							 <form:input path="password" type="password" placeholder="Enter New Password" class="form-control" name="pass" required="required" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" maxlength="20" />
 						</div>
 					
 						<div class="form-group">
@@ -208,7 +197,7 @@ body {
                             <button type="submit" class="btn btn-project" name="registerAdmin">
                                 Register
                             </button>
-                            <a href="Home.html">Already have an account?</a>
+                            <a href="">Already have an account?</a>
                         </div>
                     </div>
                     </form:form>
@@ -223,7 +212,6 @@ body {
 $('#confirmPassword').on('keyup', function () {
     var password = $("#password").val();
     var confirmPassword = $("#confirmPassword").val();
-
     if (password != confirmPassword) $("#divCheckPassword").html("Passwords do not match!").css('color','red');
     else $("#divCheckPassword").html("Passwords match.").css("color","green");
 });

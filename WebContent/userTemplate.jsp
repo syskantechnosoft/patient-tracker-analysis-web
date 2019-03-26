@@ -1,22 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-
-
+    pageEncoding="ISO-8859-1"%>
+    
+    
 <!DOCTYPE html>
 <html>
 
 <head>
 <meta charset="ISO-8859-1">
-<title>Dashboard</title>
+<title>Display Dashboards</title>
 <!-- Bootstrap CSS -->
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
 	integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
 	crossorigin="anonymous">
-<link rel="stylesheet" href="Dashboard.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+<link rel="stylesheet" href="dashboard.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-	
+
 
 <style>
 
@@ -187,9 +188,11 @@ hr {
 	border: 1px solid #f1f1f1;
 	margin-bottom: 10px;
 }
+
 .bg {
 	background: #7386D5;
 }
+
 input[type=text], input[type=number], input[type=textarea], input[type=date],
 	input[type=email] {
 	width: 100%;
@@ -197,6 +200,8 @@ input[type=text], input[type=number], input[type=textarea], input[type=date],
 	background: transparent;
 	border: none;
 }
+
+
 /* ADD PRODUCT Form*/
 </style>
 
@@ -231,7 +236,7 @@ input[type=text], input[type=number], input[type=textarea], input[type=date],
 			<nav id="sidebar"
 				style="box-shadow: 0px 20px 50px grey; border-radius: 25px;">
 				<div class="sidebar-header">
-					<h5>Hi <%=session.getAttribute("name") %>,</h5>
+					<h5>Hi Dipanjan,</h5>
 				</div>
 
 
@@ -307,100 +312,52 @@ input[type=text], input[type=number], input[type=textarea], input[type=date],
 			</nav>
 
 
+			<div class="card-header" style="background: #eaeafb;">Details</div>
+			<div class="card-body">
+				<div class="container">
+					<div class="card-deck ">
 
-<!-- Cards -->
+						<div class="card" style="width: 18rem;">
+							<img class="card-img-top " src="img/user.png" alt="Card image cap"
+								style="width: 78%;padding-left: 125px; padding-top: 15px; ">
+							<div class="card-body text-center">
+								<h4 class="card-title">John Doe</h4>
+								<p class="card-text text-center">Age</p>
+								<a href="#" class="btn btn-primary">Edit Profile</a>
+							</div>
 
-			<div class="card">
-				<div class="card-body">
-					<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+						</div>
+
+
+						<div class="card " style="background:#e0e0eb">
+							<div class="card-header" style="background: #eaeafb;">Respective
+								ID</div>
+							<div class="card-body text-center">
+								<p class="card-text text-left">Gender:</p>
+								<p class="card-text text-left">DoB:</p>
+								<p class="card-text text-left">Address:</p>
+								<p class="card-text text-left">Adress Line 1</p>
+								<p class="card-text text-left">Adress Line 2</p>
+								<p class="card-text text-left">City: cityName</p>
+								<p class="card-text text-left">State: stateName</p>
+								<p class="card-text text-left">Zipcode: zipcode</p>
+							</div>
+						</div>
+
+					</div>
 				</div>
+
+
+
+
+
 			</div>
+			<div class="card-footer"></div>
 
 
-		<br>
 
+		</div>
 
-			<div class="card-columns">
-
-				<div class="card">
-
-					<div class="card-body">
-						<h5 class="card-title">Card title that wraps to a new line</h5>
-						<p class="card-text">This is a longer card with supporting
-							text below as a natural lead-in to additional content. This
-							content is a little bit longer.</p>
-					</div>
-				</div>
-				<div class="card p-3">
-					<blockquote class="blockquote mb-0 card-body">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Integer posuere erat a ante.</p>
-						<footer class="blockquote-footer">
-							<small class="text-muted"> Someone famous in <cite
-								title="Source Title">Source Title</cite>
-							</small>
-						</footer>
-					</blockquote>
-				</div>
-				<div class="card">
-
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This card has supporting text below as a
-							natural lead-in to additional content.</p>
-						<p class="card-text">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</p>
-					</div>
-				</div>
-				<div class="card bg-primary text-white text-center p-3">
-					<blockquote class="blockquote mb-0">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Integer posuere erat.</p>
-						<footer class="blockquote-footer">
-							<small> Someone famous in <cite title="Source Title">Source
-									Title</cite>
-							</small>
-						</footer>
-					</blockquote>
-				</div>
-				<div class="card text-center">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This card has supporting text below as a
-							natural lead-in to additional content.</p>
-						<p class="card-text">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</p>
-					</div>
-				</div>
-
-				<div class="card p-3 text-right">
-					<blockquote class="blockquote mb-0">
-						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-							Integer posuere erat a ante.</p>
-						<footer class="blockquote-footer">
-							<small class="text-muted"> Someone famous in <cite
-								title="Source Title">Source Title</cite>
-							</small>
-						</footer>
-					</blockquote>
-				</div>
-				<div class="card">
-					<div class="card-body">
-						<h5 class="card-title">Card title</h5>
-						<p class="card-text">This is a wider card with supporting text
-							below as a natural lead-in to additional content. This card has
-							even longer content than the first to show that equal height
-							action.</p>
-						<p class="card-text">
-							<small class="text-muted">Last updated 3 mins ago</small>
-						</p>
-					</div>
-				</div>
-			</div>
-</div>
-			<!-- Cards -->
 
 	</div>
 
@@ -422,7 +379,7 @@ input[type=text], input[type=number], input[type=textarea], input[type=date],
 					<hr>
 					Are you Sure? <br>
 					<hr>
-					<form action="logout" method="post">
+					<form action="LoginLogout" method="post">
 						<input type="submit" name="logout-option" value="Yes"
 							class="btn btn-content btn-block" /> <br>
 					</form>
@@ -451,55 +408,14 @@ input[type=text], input[type=number], input[type=textarea], input[type=date],
 		src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
 		integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
 		crossorigin="anonymous"></script>
-		
-		<script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-<script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 
 	<script>
-		$(document).ready(function() {
-			$('#sidebarCollapse').on('click', function() {
-				$('#sidebar').toggleClass('active');
-			});
-		});
-		
-		
-		
-		
-		window.onload = function () {
-
-		    var options = {
-		        title: {
-		            text: "Patient Analysis Report in 2019"
-		        },
-		        subtitles: [{
-		            text: "As of March, 2019"
-		        }],
-		        animationEnabled: true,
-		        data: [{
-		            type: "pie",
-		            startAngle: 40,
-		            toolTipContent: "<b>{label}</b>: {y}%",
-		            showInLegend: "true",
-		            legendText: "{label}",
-		            indexLabelFontSize: 16,
-		            indexLabel: "{label} - {y}%",
-		            dataPoints: [
-		                { y: 48.36, label: "Cardiovascular diseases" },
-		                { y: 26.85, label: "Respiratory diseases" },
-		                { y: 1.49, label: "TB" },
-		                { y: 6.98, label: "Tumors and malignant" },
-		                { y: 6.53, label: "Digestive diseases" },
-		                { y: 2.45, label: "Fever and infections (especially malaria)" },
-		                { y: 3.32, label: "Unintentional Injuries" },
-		                { y: 4.03, label: "Diarrheal Diseases" }
-		            ]
-		        }]
-		    };
-		    $("#chartContainer").CanvasJSChart(options);
-
-		}
-		
-	</script>
+        $(document).ready(function () {
+            $('#sidebarCollapse').on('click', function () {
+                $('#sidebar').toggleClass('active');
+            });
+        });  
+    </script>
 
 
 </body>
