@@ -351,7 +351,7 @@ input[type=text], input[type=number],input[type=textarea],input[type=date],input
 						name="contactnumber" id="contact" placeholder="Enter Doctor's Contact Number" required="required" />
 					<hr>
 					<label for="altcontact"></label> <form:input path="alternateContactNumber"
-						type="text" name="altcontact" id="altcontact"
+						type="text" name="alternateContactNumber" id="alternateContactNumber"
 						placeholder="Enter Clerk's Alternate Contact Number (if any)" />
 					<hr>
 					<label for="email"></label> <form:input path="emailId" type="email" name="email"

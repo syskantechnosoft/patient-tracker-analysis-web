@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 
@@ -337,8 +337,8 @@ input[type=text], input[type=number],input[type=textarea],input[type=date],input
 					<label for="contact"></label> <form:input path="contactNumber" type="text"
 						name="contactnumber" id="contact" placeholder="Enter Patient's Contact Number" required="required" />
 					<hr>
-					<label for="altcontact"></label> <form:input path="altContactNumber" 
-						type="text" name="altcontact" id="altcontact"
+					<label for="altcontact"></label> <form:input path="alternateContactNumber" 
+						type="text" name="alternateContactNumber" id="alternateContactNumber"
 						placeholder="Enter Clerk's Alternate Contact Number (if any)" />
 					<hr>
 					<label for="email"></label> <form:input path="emailId" type="email" name="email"

@@ -339,7 +339,7 @@ input[type=text], input[type=number],input[type=textarea],input[type=date],input
                                 <label for="contact"></label> <form:input path="contactNumber" type="text" name="contactnumber" id="contact"
                                     placeholder="Contact Number" required="required"/>
                                 <hr>
-                                <label for="altcontact"></label> <form:input path="altContactNumber" type="text" name="altcontact" id="altcontact"
+                                <label for="altcontact"></label> <form:input path="alternateContactNumber" type="text" name="alternateContactNumber" id="alternateContactNumber"
                                     placeholder="Alternate Contact Number"/>
                                 <hr>
                                 <label for="email"></label> <form:input path="emailId" type="email" name="email" id="email" placeholder="Email"
