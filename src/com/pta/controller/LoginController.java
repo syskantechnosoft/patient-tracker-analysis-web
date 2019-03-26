@@ -8,11 +8,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.pta.model.AdminPOJO;
 import com.pta.service.LoginService;
 import com.pta.service.LoginServiceImpl;
+import com.pta.validation.LoginValidation;
+import com.pta.validation.LoginValidationImpl;
 
 @Controller
 public class LoginController {
@@ -24,29 +25,45 @@ public class LoginController {
 	}
 
 	@RequestMapping(value="/loginAdmin", method=RequestMethod.POST)
-	public String loginAdmin(HttpServletRequest request, /*@RequestParam("id") String idString, @RequestParam("password") String password*/@ModelAttribute("admin") AdminPOJO pojo, ModelMap map) {
+	public String loginAdmin(HttpServletRequest request, @ModelAttribute("admin") AdminPOJO pojo, ModelMap map) {
 		
-		AdminPOJO admin = new AdminPOJO();
-		int id = Integer.parseInt(pojo.getAdminId().substring(3));
-		admin.setAdminId(pojo.getAdminId().substring(3));
-		admin.setPassword(pojo.getPassword());
-		
-		LoginService userLogin = new LoginServiceImpl();
-		int check = userLogin.checkAdmin(admin);
-		
-		if(check != 0)
-		{
-			String name = userLogin.getName(id); 
+		LoginValidation loginValidation = new LoginValidationImpl();
+		//if(loginValidation.loginValidation(pojo)) {
+			//AdminPOJO admin = new AdminPOJO();
 			
-			HttpSession session = request.getSession();
-			session.setAttribute("name", name);
+			int id = Integer.parseInt(pojo.getAdminId().substring(3));
 			
-			return "Dashboard";
+			/*
+			 * admin.setAdminId(pojo.getAdminId().substring(3));
+			 * admin.setPassword(pojo.getPassword());
+			 */
+			
+			pojo.setAdminId(pojo.getAdminId().substring(3));
+			pojo.setPassword(pojo.getPassword());
+			
+			LoginService userLogin = new LoginServiceImpl();
+			int check = userLogin.checkAdmin(pojo);
+			
+			if(check != 0)
+			{
+				String name = userLogin.getName(id); 
+				
+				HttpSession session = request.getSession();
+				session.setAttribute("name", name);
+				
+				return "Dashboard";
+			}
+			
+			else
+			{
+				request.setAttribute("failure", "failure");
+				return "Home";
+			}	
 		}
 		
-		else
-		{
-			return "InvalidUser";
-		}		
-	}
+	/*
+	 * else { request.setAttribute("failure", "failure"); return "Home"; }
+	 * 
+	 * }
+	 */
 }

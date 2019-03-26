@@ -1,5 +1,7 @@
 package com.pta.controller;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -20,20 +22,21 @@ public class RegisterController {
 	}
 	
 	@RequestMapping(value="/registerAdmin", method=RequestMethod.POST)
-	public String registerAdmin(ModelMap map, @ModelAttribute("admin") AdminPOJO pojo) {
+	public String registerAdmin(HttpServletRequest request, ModelMap map, @ModelAttribute("admin") AdminPOJO pojo) {
 		
-		if(pojo.getPassword().equals(pojo.getConfirmPassword())) {
+
+			if(pojo.getPassword().equals(pojo.getConfirmPassword())) {
+				
+				RegisterService newAdmin = new RegisterServiceImpl();
+				String id = newAdmin.addAdmin(pojo);
+				map.addAttribute("id", id);
+				request.setAttribute("success", "successs");
+				return "Home";
+			}
 			
-			RegisterService newAdmin = new RegisterServiceImpl();
-			String id = newAdmin.addAdmin(pojo);
-			map.addAttribute("id", id);
-			return "AdminHome";
+			else {
+				request.setAttribute("passwordError", "passwordError");
+				return "PasswordError";
+			}
 		}
-		
-		else {
-			return "PasswordError";
-		}
-
 	}
-
-}
