@@ -304,8 +304,8 @@ input[type=text], input[type=number],input[type=textarea],input[type=date],input
                         <div style="background:#f0e8f7">
 
 
-                             <form:form  method="post" style="width: 100%;">
-					<form:input path="firstName" type="text" name="fname" placeholder="Enter Doctor's First Name" required="required"/>
+                             <form:form  method="post" style="width: 100%;" modelAttribute="doctor">
+					<form:input path="firstName" type="text" name="fname" placeholder="Enter Doctor's First Name" required="required" />
 					<hr>
 					<form:input path="lastName" type="text" name="lname" placeholder="Enter Doctor's Last Name" required="required"/>
 					<hr>
@@ -324,7 +324,7 @@ input[type=text], input[type=number],input[type=textarea],input[type=date],input
 						name="addressl1" id="" placeholder="Enter Address Line 1" required="required" />
 					<hr>
 					<label for="addressl2"></label> <form:input path="addressLine2" type="textarea" 
-						name="addressl2" i placeholder="Enter Address Line 2" required="required" />
+						name="addressl2"  placeholder="Enter Address Line 2" required="required" />
 					<hr>
 					<label for="degree"></label> <form:input path="degree" type="text" name="degree"
 						id="degree" placeholder="Enter Doctor's Degree" required="required" />

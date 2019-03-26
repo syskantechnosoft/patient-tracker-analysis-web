@@ -329,7 +329,7 @@ input[type=text], input[type=number], input[type=textarea], input[type=date],
 								<div class="col-4">
 									<div align="right">
 
-										<a href="#" role="button""> <i class="material-icons"
+										<a href="addDoctorForm" role="button""> <i class="material-icons"
 											style="font-size: 40px;">add_circle </i>
 										</a>
 									</div>
