@@ -1,20 +1,24 @@
 package com.pta.dao;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 import com.pta.entity.ClerkEntity;
 import com.pta.model.ClerkPOJO;
+import com.pta.util.HibernateUtil;
 
-public class ClerkDAOImpl implements ClerkDAO {
-	public void addClerkDetails(ClerkPOJO pojo) {
+public class ClerkDaoImpl implements ClerkDao {
+	public String addClerkDetails(ClerkPOJO pojo) {
 			
 		SessionFactory sessionfactory = null;
 		Session session = null;
+		StringBuilder builder = new StringBuilder();
 		
 		sessionfactory = HibernateUtil.getSessionFactory();
 		session = sessionfactory.openSession();
@@ -35,10 +39,38 @@ public class ClerkDAOImpl implements ClerkDAO {
 		clerkEntity.setState(pojo.getState());
 		clerkEntity.setZipCode(pojo.getZipCode());
 
-		session.save(clerkEntity);
-		transaction.commit();
-		session.close();
-
+		
+		try
+		{
+			session.save(clerkEntity);
+			transaction.commit();
+			
+			List clerkList = (List) session.createQuery("from ClerkEntity").list();
+			
+			Iterator iterator = clerkList.iterator();
+			
+			if(iterator.hasNext())
+			{
+				ClerkEntity clerkId = (ClerkEntity)clerkList.get(clerkList.size()-1);
+				builder.append("CLK");
+				builder.append(Integer.toString(clerkId.getClerkId()));
+				System.out.println(builder);
+			}
+		}
+		
+		catch(HibernateException he)
+		{
+			he.printStackTrace();
+		}
+		
+		finally
+		{
+			session.close();
+		}
+		
+		String clerkId = builder.toString();
+		return clerkId;
+		
 	}
 	
 	
@@ -46,6 +78,7 @@ public class ClerkDAOImpl implements ClerkDAO {
 		ArrayList clerkDetails=null;
 		SessionFactory sessionfactory = null;
 		Session session = null;
+		StringBuilder builder = new StringBuilder();
 		
 		sessionfactory = HibernateUtil.getSessionFactory();
 		session = sessionfactory.openSession();
@@ -61,7 +94,12 @@ public class ClerkDAOImpl implements ClerkDAO {
 			 pojo.setAge(clerkEntity.getAge());
 			 pojo.setAlternateContactNumber(clerkEntity.getAlternateContactNumber());
 			 pojo.setCity(clerkEntity.getCity());
-			 pojo.setClerkId(clerkEntity.getClerkId());
+			 int id = clerkEntity.getClerkId();
+			 builder.append("CLK");
+			 builder.append(Integer.toString(id));
+			 String clerkId = builder.toString();
+			 pojo.setClerkId(clerkId);
+			 builder.setLength(0);
 			 pojo.setContactNumber(clerkEntity.getContactNumber());
 			 pojo.setDateOfBirth(clerkEntity.getDateOfBirth());
 			 pojo.setEmailId(clerkEntity.getEmailId());
