@@ -1,24 +1,25 @@
 package com.pta.model;
 
 public class ClerkPOJO {
-	private int clerkId;
+	private String clerkId;
 	private String firstName;
 	private String lastName;
 	private int age;
 	private String gender;
 	private String dateOfBirth;
-	private int contactNumber;
-	private int alternateContactNumber;
+	private long contactNumber;
+	private long alternateContactNumber;
 	private String emailId;
 	private String addressLine1;
 	private String addressLine2;
 	private String city;
 	private String state;
 	private String zipCode;
-	public int getClerkId() {
+	
+	public String getClerkId() {
 		return clerkId;
 	}
-	public void setClerkId(int clerkId) {
+	public void setClerkId(String clerkId) {
 		this.clerkId = clerkId;
 	}
 	public String getFirstName() {
@@ -51,16 +52,16 @@ public class ClerkPOJO {
 	public void setDateOfBirth(String dateOfBirth) {
 		this.dateOfBirth = dateOfBirth;
 	}
-	public int getContactNumber() {
+	public long getContactNumber() {
 		return contactNumber;
 	}
-	public void setContactNumber(int contactNumber) {
+	public void setContactNumber(long contactNumber) {
 		this.contactNumber = contactNumber;
 	}
-	public int getAlternateContactNumber() {
+	public long getAlternateContactNumber() {
 		return alternateContactNumber;
 	}
-	public void setAlternateContactNumber(int alternateContactNumber) {
+	public void setAlternateContactNumber(long alternateContactNumber) {
 		this.alternateContactNumber = alternateContactNumber;
 	}
 	public String getEmailId() {
@@ -99,7 +100,5 @@ public class ClerkPOJO {
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
 	}
-	
-	
-	
+
 }
