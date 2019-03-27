@@ -202,6 +202,14 @@ input[type=text], input[type=number], input[type=textarea], input[type=date],
 </head>
 
 <body>
+	<% if(request.getAttribute("success")!=null) {%>
+	
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script type="text/javascript">
+    swal ( 'CLIENT ADDED SUCCESSFULLY!!' ,  "Client's ID : ${id}..." ,  'success' )
+    </script>
+	
+<% }%>
 
 	<!--Navigation Bar-->
 	<nav class="navbar navbar-expand-lg navbar-light "
@@ -230,7 +238,7 @@ input[type=text], input[type=number], input[type=textarea], input[type=date],
 			<nav id="sidebar"
 				style="box-shadow: 0px 20px 50px grey; border-radius: 25px;">
 				<div class="sidebar-header">
-					<h5>Hi Dipanjan,</h5>
+					<h5>Hi <%=session.getAttribute("name") %>,</h5>
 				</div>
 
 
@@ -350,22 +358,30 @@ input[type=text], input[type=number], input[type=textarea], input[type=date],
 									<th>Email</th>
 									<th>Contact</th>
 									<th>Edit</th>
-									
+								<%
+									ArrayList clerkDetails = (ArrayList) request.getAttribute("clerkDetails");
+									Iterator iterator = clerkDetails.iterator();
+									while(iterator.hasNext())
+									{
+										
+											ClerkPojo pojo = (ClerkPojo) iterator.next();
+						%>	
 								</thead>
 								<tbody id="table">
-									<tr>
-										 <td><a href="#" class="btn btn-basic" role="button">id</a></td> 
-										<td>Alfa</td>
-										<td>RAY</td>
-										<td>CB 106/107 Street </td>
-										<td>xxxxxx@gmail.com</td>
-										<td>+923335586757</td>
+										 <tr>
+									<td><a href="#" class="btn btn-basic" role="button"><%=pojo.getClerkId() %></a></td> 
+										<td><%=pojo.getFirstName() %></td>
+										<td><%=pojo.getLastName() %></td>
+										<td><%=pojo.getAge() %></td>
+										<td><%=pojo.getEmailId() %></td>
+										<td><%=pojo.getContactNumber() %></td>
 										 <td><a href="#" role="button"><i class="material-icons">mode_edit</i></a></td>
 										
+							<%} %>			
 												
 									
 									</tr>
-									<tr>
+								<!--	<tr>
 										 <td><a href="#" class="btn btn-basic" role="button">id</a></td> 
 										<td> Bravo</td>
 										<td>RAY</td>
@@ -425,7 +441,7 @@ input[type=text], input[type=number], input[type=textarea], input[type=date],
 										<td>+923335586757</td>
 										 <td><a href="#" role="button"><i class="material-icons">mode_edit</i></a></td>
 					
-									</tr>
+									</tr>     -->
 								</tbody>
 							</table>
 						</div>
