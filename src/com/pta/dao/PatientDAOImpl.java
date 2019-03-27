@@ -3,17 +3,20 @@ package com.pta.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+
 import com.pta.entity.PatientEntity;
 import com.pta.model.PatientPOJO;
 
 public class PatientDAOImpl implements PatientDAO{
-	public void addPatientDetails(PatientPOJO pojo) {
+	public String addPatientDetails(PatientPOJO pojo) {
 
 		SessionFactory sessionfactory = null;
 		Session session = null;
+		StringBuilder builder = new StringBuilder();
 		
 		sessionfactory = HibernateUtil.getSessionFactory();
 		session = sessionfactory.openSession();
@@ -34,12 +37,30 @@ public class PatientDAOImpl implements PatientDAO{
 	    patientEntity.setState(pojo.getState());
 	    patientEntity.setZipCode(pojo.getZipCode());
 
-		session.save(patientEntity);
-		transaction.commit();
-		session.close();
+	    try
+		{
+			session.save(patientEntity);
+			transaction.commit();
+			
+			patientEntity = session.get(PatientEntity.class, patientEntity.getPatientId());
+			builder.append("PAT");
+			builder.append(Long.toString(patientEntity.getPatientId()));
+			
+		}catch(HibernateException he){
+			
+			he.printStackTrace();
+		
+		}finally{
+		
+			session.close();
+		}
+		
+		String patientId = builder.toString();
+		return patientId;
 	}
 	
 	public  ArrayList fetchPatientDetails() {
+		
 		ArrayList patientDetails=null;
 		SessionFactory sessionfactory = null;
 		Session session = null;
@@ -49,16 +70,18 @@ public class PatientDAOImpl implements PatientDAO{
 		
 		List list=session.createQuery("from PatientEntity").list();
 		patientDetails=new ArrayList();
+		
 		for(int i=0;i< list.size();i++)
 			{
 			 PatientEntity patientEntity=(PatientEntity)list.get(i);
 			 PatientPOJO pojo = new PatientPOJO();
+			
 			 pojo.setAddressLine1(patientEntity.getAddressLine1());
 			 pojo.setAddressLine2(patientEntity.getAddressLine2());
 			 pojo.setAge(patientEntity.getAge());
 			 pojo.setAlternateContactNumber(patientEntity.getAlternateContactNumber());
 			 pojo.setCity(patientEntity.getCity());
-			 pojo.setPatientId(patientEntity.getPatientId());
+			 pojo.setPatientId(Long.toString(patientEntity.getPatientId()));
 			 pojo.setContactNumber(patientEntity.getContactNumber());
 			 pojo.setDateOfBirth(patientEntity.getDateOfBirth());
 			 pojo.setEmailId(patientEntity.getEmailId());
@@ -68,6 +91,7 @@ public class PatientDAOImpl implements PatientDAO{
 			 pojo.setState(patientEntity.getState());
 			 pojo.setZipCode(patientEntity.getZipCode());
 			 patientDetails.add(pojo);
+			
 			}
 		
 		session.close();

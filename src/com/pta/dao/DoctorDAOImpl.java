@@ -67,7 +67,7 @@ public class DoctorDAOImpl implements DoctorDAO{
 			 pojo.setAge(doctorEntity.getAge());
 			 pojo.setAlternateContactNumber(doctorEntity.getAlternateContactNumber());
 			 pojo.setCity(doctorEntity.getCity());
-			 pojo.setDoctorId(doctorEntity.getDoctorId());
+			 pojo.setDoctorId(Long.toString(doctorEntity.getDoctorId()));
 			 pojo.setContactNumber(doctorEntity.getContactNumber());
 			 pojo.setDateOfBirth(doctorEntity.getDateOfBirth());
 			 pojo.setEmailId(doctorEntity.getEmailId());

@@ -47,7 +47,7 @@ public class RegisterDaoImpl implements RegisterDao{
 			{
 				AdminEntity adminId = (AdminEntity)l1.get(l1.size()-1);
 				builder.append("ADN");
-				builder.append(Integer.toString(adminId.getAdminId()));
+				builder.append(Long.toString(adminId.getAdminId()));
 				System.out.println(builder);
 			}
 		}

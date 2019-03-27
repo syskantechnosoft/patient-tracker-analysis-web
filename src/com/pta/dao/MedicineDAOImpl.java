@@ -3,6 +3,7 @@ package com.pta.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -11,10 +12,11 @@ import com.pta.entity.MedicineEntity;
 import com.pta.model.MedicinePOJO;
 
 public class MedicineDAOImpl implements MedicineDAO{
-	public void addMedicineDetails(MedicinePOJO pojo) {
+	public String addMedicineDetails(MedicinePOJO pojo) {
 		
 		SessionFactory sessionfactory = null;
 		Session session = null;
+		StringBuilder builder = new StringBuilder();
 		
 		sessionfactory = HibernateUtil.getSessionFactory();
 		session = sessionfactory.openSession();
@@ -28,9 +30,26 @@ public class MedicineDAOImpl implements MedicineDAO{
 		medicineEntity.setMedicineDescription(pojo.getMedicineDescription());
 		medicineEntity.setPrescribedFor(pojo.getPrescribedFor());
 		
-		session.save(medicineEntity);
-		transaction.commit();
-		session.close();
+		try
+		{
+			session.save(medicineEntity);
+			transaction.commit();
+			
+			medicineEntity = session.get(MedicineEntity.class, medicineEntity.getMedicineId());
+			builder.append("MED");
+			builder.append(Long.toString(medicineEntity.getMedicineId()));
+			
+		}catch(HibernateException he){
+			
+			he.printStackTrace();
+		
+		}finally{
+		
+			session.close();
+		}
+		
+		String medicineId = builder.toString();
+		return medicineId;
 	}
 	
 	public ArrayList fetchMedicineDetails() {
@@ -48,7 +67,7 @@ public class MedicineDAOImpl implements MedicineDAO{
 			
 			MedicineEntity medicineEntity = (MedicineEntity)list.get(i);
 			MedicinePOJO pojo = new MedicinePOJO();
-			pojo.setMedicineId(medicineEntity.getMedicineId());
+			pojo.setMedicineId(Long.toString(medicineEntity.getMedicineId()));
 			pojo.setAmount(medicineEntity.getAmount());
 			pojo.setCureFor(medicineEntity.getCureFor());
 			pojo.setDosage(medicineEntity.getDosage());
